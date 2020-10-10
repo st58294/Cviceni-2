@@ -45,12 +45,13 @@ int main(int argc, char** argv) {
     try
     {
         Receipt receipt11 = cashRegister1->CreateReceipt(45, 0.5);
+        Receipt receipt12 = cashRegister1->CreateReceipt(45, 0.5);
     }
     catch (const std::exception&)
     {
 
     }
-    Receipt receipt12 = cashRegister1->CreateReceipt(45, 0.5);
+ 
 	system("pause");
 	return 0;
 }
