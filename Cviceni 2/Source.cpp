@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
     cout << receipt1->GetId() << "\n";
     cout << receipt1->GetPrice() << "\n";
     cout << receipt1->GetDPH() << "\n";
-
+    delete receipt1;
     cout << "\n";
 
     CashRegister* cashRegister1 = new CashRegister{};
@@ -33,7 +33,8 @@ int main(int argc, char** argv) {
     cout << cashRegister1->GetCost() << "\n";
     cout << cashRegister1->GetCostAndDph() << "\n";
     
-
+    try
+    {
     Receipt receipt4 = cashRegister1->CreateReceipt(45, 0.5);
     Receipt receipt5 = cashRegister1->CreateReceipt(45, 0.5);
     Receipt receipt6 = cashRegister1->CreateReceipt(45, 0.5);
@@ -41,17 +42,14 @@ int main(int argc, char** argv) {
     Receipt receipt8 = cashRegister1->CreateReceipt(45, 0.5);
     Receipt receipt9 = cashRegister1->CreateReceipt(45, 0.5);
     Receipt receipt10 = cashRegister1->CreateReceipt(45, 0.5);
-    
-    try
-    {
-        Receipt receipt11 = cashRegister1->CreateReceipt(45, 0.5);
-        Receipt receipt12 = cashRegister1->CreateReceipt(45, 0.5);
+    Receipt receipt11 = cashRegister1->CreateReceipt(45, 0.5);
+    Receipt receipt12 = cashRegister1->CreateReceipt(45, 0.5);
     }
     catch (const std::exception&)
     {
 
     }
- 
+    delete cashRegister1;
 	system("pause");
 	return 0;
 }

@@ -1,14 +1,16 @@
 #pragma once
 #ifndef CASH_REGISTER_H
 #define CASH_REGISTER_H
-
 #include "Receipt.h"
+
+
 
 class CashRegister
 {
 private:
 	Receipt* receipt;
-	int receiptsCount = 0;
+	static int receiptsCount;
+	int count = 0;
 	Receipt* receipts;
 public:
 	CashRegister();

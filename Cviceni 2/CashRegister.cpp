@@ -4,7 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#define ID_COUNTER_INIT_VALUE 1000
+int CashRegister::receiptsCount = 1000;
 
 CashRegister::CashRegister(){
 	receipts  = new Receipt[10];
@@ -14,21 +14,21 @@ CashRegister::~CashRegister() {
 	delete[] receipts;
 }
 Receipt& CashRegister::CreateReceipt(double cost, double dph) {
-	if (receiptsCount == 10) {
-	
+	if (count == 10) {
+		throw std::exception("Register is full ");
 	}
 	else {
-		receipts[receiptsCount].SetId(ID_COUNTER_INIT_VALUE + receiptsCount);
-		receipts[receiptsCount].SetPrice(cost);
-		receipts[receiptsCount].SetDPH(dph);
-		receiptsCount++;
-		return receipts[receiptsCount - 1];
+		receipts[count].SetId(receiptsCount + count);
+		receipts[count].SetPrice(cost);
+		receipts[count].SetDPH(dph);
+		count++;
+		return receipts[count - 1];
 	}
 }
-Receipt& CashRegister::GetReceipt(int index){
-	for (size_t i = 0; i < receiptsCount; i++)
+Receipt& CashRegister::GetReceipt(int identifier){
+	for (size_t i = 0; i < count; i++)
 	{
-		if (receipts[i].GetId() == index) {
+		if (receipts[i].GetId() == identifier) {
 			return receipts[i];
 		}
 	}
@@ -36,7 +36,7 @@ Receipt& CashRegister::GetReceipt(int index){
 }
 double CashRegister::GetCost() const {
 	double cost = 0;
-	for (size_t i = 0; i < receiptsCount; i++)
+	for (size_t i = 0; i < count; i++)
 	{
 		cost += receipts[i].GetPrice();
 	}
@@ -44,7 +44,7 @@ double CashRegister::GetCost() const {
 }
 double CashRegister::GetCostAndDph() const {
 	double CostWithDPH = 0;
-	for (size_t i = 0; i < receiptsCount; i++)
+	for (size_t i = 0; i < count; i++)
 	{
 		CostWithDPH += receipts[i].GetPrice() * (1 + receipts[i].GetDPH());
 	}
