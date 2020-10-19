@@ -11,8 +11,10 @@ private:
 public:
 	Game();
 	~Game();
+
 	void AddObeject(Object* o);
 	int* FindIDStaticObejct(double xMin, double xMax, double yMin, double yMax);
+
 	DynamicObject** FindDynamicObejctsInArea(double x, double y, double r);
 	DynamicObject** FindDynamicObejctsInArea
 	(double x, double y, double r, double angleMin, double angleMax);

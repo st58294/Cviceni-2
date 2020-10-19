@@ -7,13 +7,12 @@ typedef struct Bin {
 	struct Bin* next;
 }Bin;
 
-
 Game::Game() {
-	objects = new Object * [10];
+	objects = new Object*[10];
 }
 
 Game::~Game() {
-	delete[] objects;
+	delete* objects;
 }
 
 void Game::AddObeject(Object* object) {
@@ -55,12 +54,13 @@ DynamicObject** Game::FindDynamicObejctsInArea(double x, double y, double r) {
 			else {
 				sb_acc->index = i;
 				sb_temp->next = sb_acc;
-				sb_temp = sb_temp;
+				sb_temp = sb_temp->next;
 				sb_temp->next = NULL;
 				quantity++;
 			}
 		}
 	}
+
 	DynamicObject** results = new DynamicObject * [quantity];
 	for (size_t i = 0; i < quantity; i++) {
 		if (sb_head != NULL) {
@@ -91,7 +91,7 @@ DynamicObject** Game::FindDynamicObejctsInArea
 			else {
 				sb_acc->index = i;
 				sb_temp->next = sb_acc;
-				sb_temp = sb_temp;
+				sb_temp = sb_temp->next;
 				sb_temp->next = NULL;
 				quantity++;
 			}

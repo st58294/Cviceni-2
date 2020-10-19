@@ -7,6 +7,7 @@ private:
     int id;
     double x;
     double y;
+    
 public:
     Object(int id);
     virtual ~Object() {};      
@@ -16,6 +17,5 @@ public:
     void SetX(double x);
     void SetY(double y);
 };
-
 
 #endif // !OBJECT_H

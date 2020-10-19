@@ -4,12 +4,7 @@
 #include "Monster.h"
 #include "Object.h"
 #include "StaticObject.h"
-
-
-
 using namespace std;
-
-
 
 
 int main(int argc, char** argv) {
@@ -35,6 +30,8 @@ int main(int argc, char** argv) {
 	cout << game->FindIDStaticObejct(0, 2, 0, 2)[0] << endl;
 	cout << game->FindDynamicObejctsInArea(2, 2, 2)[0]->GetId() << endl;
 	cout << game->FindDynamicObejctsInArea(2, 2, 2, 0, 2)[1]->GetId() << endl;
+
+	delete[] obj , obj2 , obj3, obj4, game;
 
 	return 0;
 }

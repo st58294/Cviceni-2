@@ -1,6 +1,6 @@
 #pragma once
-#ifndef CPP1_MONSTRUM_H
-#define CPP1_MONSTRUM_H
+#ifndef MONSTRUM_H
+#define MONSTRUM_H
 
 #include "DynamicObject.h"
 
@@ -15,4 +15,4 @@ public:
     void SetMaxHp(int maxHp);
 };
 
-#endif // !CPP1_MONSTRUM_H
+#endif // !MONSTRUM_H

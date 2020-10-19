@@ -1,14 +1,11 @@
 #include "DynamicObject.h"
 
-
-
-DynamicObject::DynamicObject(int id, double angle) :Object(id){
+DynamicObject::DynamicObject(int id, double angle) :Object(id) {
 	Object* object = new Object(id);
 	this->angle = angle;
 }
 
-DynamicObject::~DynamicObject()
-{
+DynamicObject::~DynamicObject() {
 }
 
 double DynamicObject::GetAngle() const {
