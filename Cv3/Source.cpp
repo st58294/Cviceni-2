@@ -31,7 +31,8 @@ int main(int argc, char** argv) {
 	cout << game->FindDynamicObejctsInArea(2, 2, 2)[0]->GetId() << endl;
 	cout << game->FindDynamicObejctsInArea(2, 2, 2, 0, 2)[1]->GetId() << endl;
 
-	delete[] obj, obj2, obj3, obj4;
+	delete[] obj, obj2, obj3, obj4, game;
+
 
 	return 0;
 }

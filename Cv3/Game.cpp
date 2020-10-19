@@ -12,6 +12,7 @@ Game::Game() {
 }
 
 Game::~Game() {
+
 }
 
 void Game::AddObeject(Object* object) {
