@@ -12,7 +12,6 @@ Game::Game() {
 }
 
 Game::~Game() {
-	delete* objects;
 }
 
 void Game::AddObeject(Object* object) {
