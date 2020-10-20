@@ -12,7 +12,11 @@ Game::Game() {
 }
 
 Game::~Game() {
-
+	for (size_t i = 0; i < counter; i++)
+	{
+		delete objects[i];
+	}
+	delete[] objects;
 }
 
 void Game::AddObeject(Object* object) {
