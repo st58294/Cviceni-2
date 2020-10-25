@@ -8,14 +8,10 @@ typedef struct Bin {
 }Bin;
 
 Game::Game() {
-	objects = new Object*[10];
+	objects = new Object*[];
 }
 
 Game::~Game() {
-	for (size_t i = 0; i < counter; i++)
-	{
-		delete objects[i];
-	}
 	delete[] objects;
 }
 

@@ -8,6 +8,7 @@ class Game {
 private:
 	Object** objects;
 	int counter = 0;
+	int maxObjCount = 10000;
 public:
 	Game();
 	~Game();
