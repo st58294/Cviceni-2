@@ -22,22 +22,34 @@ string Time::toString() const {
 }
 
 int Time::compareTo(IComparable* obj) const {
-	if (hours == ((Time*)obj)->hours) {
-		if (minutes == ((Time*)obj)->minutes) {
-			if (seconds == ((Time*)obj)->seconds) {
+	if (obj == nullptr){
+		
+	}
+
+	Time* ComObject = dynamic_cast<Time*> (obj);
+	if (ComObject == nullptr ) {
+		throw "nelze porovnavat s tímto objektem";
+	}
+
+
+
+
+	if (hours == ComObject->hours) {
+		if (minutes == ComObject->minutes) {
+			if (seconds == ComObject->seconds) {
 				return 0;
 			}
-			else if (seconds > ((Time*)obj)->seconds) {
+			else if (seconds > ComObject->seconds) {
 				return 1;
 			}
 			return -1;
 		}
-		else if (minutes > ((Time*)obj)->minutes) {
+		else if (minutes > ComObject->minutes) {
 			return 1;
 		}
 		return -1;
 	}
-	else if (hours > ((Time*)obj)->hours) {
+	else if (hours > ComObject->hours) {
 		return 1;
 	}
 	return -1;

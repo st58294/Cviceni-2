@@ -4,7 +4,7 @@
 #include "IComparable.h"
 
 
-struct Time : public IComparable
+class Time : public IComparable
 {
 private:
 	int hours;
