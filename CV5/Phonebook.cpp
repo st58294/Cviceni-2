@@ -45,7 +45,7 @@ Model::Phonebook::Phonebook(){
 }
 
 Model::Phonebook::~Phonebook(){
-    listElement* newElement = new listElement{};
+    listElement* newElement = begin;
     while (newElement != nullptr) {
         listElement* tmp = newElement->next;
         delete newElement;
