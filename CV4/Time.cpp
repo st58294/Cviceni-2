@@ -11,8 +11,8 @@ Time::Time(int hours, int minutes, int seconds) {
 	this->seconds = seconds;
 }
 
-Time::~Time(){
-	
+Time::~Time()
+{
 }
 
 string Time::toString() const {
@@ -22,17 +22,14 @@ string Time::toString() const {
 }
 
 int Time::compareTo(IComparable* obj) const {
-	if (obj == nullptr){
-		
+	if (obj == nullptr) {
+		throw "Nelze porovnat s nullptr";
 	}
 
 	Time* ComObject = dynamic_cast<Time*> (obj);
 	if (ComObject == nullptr ) {
 		throw "nelze porovnavat s tímto objektem";
 	}
-
-
-
 
 	if (hours == ComObject->hours) {
 		if (minutes == ComObject->minutes) {

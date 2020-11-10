@@ -40,8 +40,6 @@ string Model::Phonebook::FindPhone(int id) const {
 }
 
 Model::Phonebook::Phonebook(){
-   
-
 }
 
 Model::Phonebook::~Phonebook(){

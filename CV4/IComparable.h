@@ -4,9 +4,9 @@
 #include <string>
 #include "IObject.h"
 
-
 class IComparable : public IObject {
 public:
+	virtual ~IComparable() {};
 	virtual int compareTo(IComparable* obj) const = 0;
 };
 
