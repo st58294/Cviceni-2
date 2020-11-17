@@ -13,14 +13,14 @@ Date::~Date(){
 	
 }
 
-ostream& operator<<(ostream& read, const Date& data){
-	read << data._day << " " << data._month << " " << data._year;
-	return read;
+ostream& operator<<(ostream& output, const Date& data){
+	output << data._day << " " << data._month << " " << data._year;
+	return output;
 }
 
-istream& operator>>(istream& write, Date& data){
-	write >> data._day;
-	write >> data._month;
-	write >> data._year;
-	return write;
+istream& operator>>(istream& input, Date& data){
+	input >> data._day;
+	input >> data._month;
+	input >> data._year;
+	return input;
 }

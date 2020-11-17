@@ -1,31 +1,31 @@
 #include <string>
-#include "Adress.h"
+#include "Address.h"
 
 using namespace std;
 
-Adress::Adress()
+Address::Address()
 {
 }
 
-Adress::Adress(string _street, string _city, int _zipCode) {
+Address::Address(string _street, string _city, int _zipCode) {
     this->_city = _city;
     this->_street = _city;
     this->_zipCode = _zipCode;
 }
 
-Adress::~Adress()
+Address::~Address()
 {
 }
 
-ostream& operator<<(ostream& read, const Adress& data) {
-    read << data._city << " - " << data._street << " - " << data._zipCode << endl;
-    return read;
+ostream& operator<<(ostream& output, const Address& data) {
+    output << data._city << " " << data._street << " " << data._zipCode << " ";
+    return output;
 }
 
-istream& operator>>(istream& write, Adress& data) {
-    write >> data._city;
-    write >> data._street;
-    write >> data._zipCode;
+istream& operator>>(istream& input, Address& data) {
+    input >> data._city;
+    input >> data._street;
+    input >> data._zipCode;
 
-    return write;
+    return input;
 }
