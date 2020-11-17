@@ -2,19 +2,23 @@
 #ifndef INCREASING_COEFFICIENT_H
 #define INCREASING_COEFFICIENT_H
 #include<cstdlib>
+#include <exception>
+
+
+using namespace std;
 
 template <typename DataType,
 	int initialSize = 5, int increasingCoefficient = 2>
 
-	class increasingContainer {
+	class IncreasingCoefficient {
 private:
 	DataType* _field;
 	unsigned _fieldSize;
 	unsigned _CvalidElement;
 	bool isNotFull() const;
 public:
-	increasingContainer();
-	~increasingContainer();
+	IncreasingCoefficient();
+	~IncreasingCoefficient();
 	void add(const DataType& o);
 	void increaseSize();
 	DataType& operator[](int index);
@@ -25,21 +29,21 @@ public:
 };
 
 template <typename DataType, int initialSize, int increasingCoefficient>
-increasingContainer<DataType, initialSize,
-	increasingCoefficient>::increasingContainer() {
+IncreasingCoefficient<DataType, initialSize,
+	increasingCoefficient>::IncreasingCoefficient() {
 	_field = new DataType[initialSize];
 	_fieldSize = initialSize;
 	_CvalidElement = 0;
 }
 
 template <typename DataType, int initialSize, int increasingCoefficient>
-increasingContainer<DataType, initialSize,
-	increasingCoefficient>::~increasingContainer() {
+IncreasingCoefficient<DataType, initialSize,
+	increasingCoefficient>::~IncreasingCoefficient() {
 	delete[] _field;
 }
 
 template <typename DataType, int initialSize, int increasingCoefficient>
-bool increasingContainer<DataType, initialSize,
+bool IncreasingCoefficient<DataType, initialSize,
 	increasingCoefficient>::isNotFull() const {
 	if (_CvalidElement < _fieldSize){
 		return true;
@@ -48,7 +52,7 @@ bool increasingContainer<DataType, initialSize,
 }
 
 template <typename DataType, int initialSize, int increasingCoefficient>
-void increasingContainer<DataType, initialSize,
+void IncreasingCoefficient<DataType, initialSize,
 	increasingCoefficient>::increaseSize() {
 
 	int newSize = _fieldSize * increasingCoefficient;
@@ -64,7 +68,7 @@ void increasingContainer<DataType, initialSize,
 }
 
 template <typename DataType, int initialSize, int increasingCoefficient>
-void increasingContainer<DataType, initialSize,
+void IncreasingCoefficient<DataType, initialSize,
 	increasingCoefficient>::add(const DataType& o) {
 
 	if (!isNotFull()) {
@@ -78,37 +82,42 @@ void increasingContainer<DataType, initialSize,
 }
 
 template <typename DataType, int initialSize, int increasingCoefficient>
-DataType& increasingContainer<DataType, initialSize,
+DataType& IncreasingCoefficient<DataType, initialSize,
 	increasingCoefficient>::operator[](int index) {
 	if (index > _fieldSize) {
-		throw 0;
+		throw invalid_argument("Error");
 	}
 	return _field[index];
 }
 
 template <typename DataType, int initialSize, int increasingCoefficient>
-DataType increasingContainer<DataType, initialSize,
+DataType IncreasingCoefficient<DataType, initialSize,
 	increasingCoefficient>::operator[](int index) const {
 	if (index > _fieldSize) {
-		throw 0;
+		throw invalid_argument("Error");
 	}
 	return _field[index];
 }
 
 template <typename DataType, int initialSize, int increasingCoefficient>
-unsigned int increasingContainer<DataType, initialSize,
+unsigned int IncreasingCoefficient<DataType, initialSize,
 	increasingCoefficient>::count() const {
 			return _CvalidElement;	
 }
 
 template <typename DataType, int initialSize, int increasingCoefficient>
-void increasingContainer<DataType, initialSize,
+void IncreasingCoefficient<DataType, initialSize,
 	increasingCoefficient>::addTo(int index, const DataType& o) {
+	
+	if (_CvalidElement < index) {
+		throw invalid_argument("Error - Coefficient");
+	}
+	
 	if (_CvalidElement <= index) {
 		_field[index] = o;
 		_CvalidElement++;
 		return;
-	}
+	} 
 	else {
 		if (!isNotFull()) {
 			increaseSize();
@@ -130,7 +139,7 @@ void increasingContainer<DataType, initialSize,
 }
 
 template <typename DataType, int initialSize, int increasingCoefficient>
-void increasingContainer<DataType, initialSize,
+void IncreasingCoefficient<DataType, initialSize,
 	increasingCoefficient>::removeFrom(int index) {
 	DataType* newField = new DataType[_fieldSize];
 	int counter = 0;

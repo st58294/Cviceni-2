@@ -1,12 +1,14 @@
 #include <iostream>
 #include "IncreasingCoefficient.h"
 #include <string>
+#include<cstdlib>
+#include <exception>
 
 using namespace std;
 
 int main(int argc, char** argv) {
     
-	increasingContainer<int, 5> cont = increasingContainer<int, 5>();
+	IncreasingCoefficient<int, 5> cont = IncreasingCoefficient<int, 5>();
 	
 	for (int i = 0; i < 12; i++){
 		cont.add(i);
