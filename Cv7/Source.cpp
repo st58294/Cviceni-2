@@ -68,6 +68,17 @@ int countOfMembers() {
 	return counter;
 }
 
+int countOfMembersBinary() {
+	int counter = 1;
+	char buffer[1000];
+	FILE* f = fopen("file.dat", "rb");
+	while (!feof(f)) {
+		fgets(buffer, sizeof(buffer), f);
+		counter++;
+	}
+	fclose(f);
+	return counter;
+}
 
 Person* read() {
 	int count = countOfMembers();
@@ -106,9 +117,11 @@ Person* readBinary() {
 	if (!file_stream.is_open()) {
 		throw runtime_error("File not opened");
 	}
-	Person* field = new Person[3];
+	int count = countOfMembersBinary();
+
+	Person* field = new Person[count];
 	if (file_stream.is_open()) {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < count; i++) {
 			file_stream.read((char*)&field[i], sizeof(Person));
 			cout << field[i] << endl;
 		}
@@ -122,11 +135,14 @@ Person* readBinary() {
 int main(int argc, char** argv) {
 	write();
 	writeBinary();
-
+	
+	cout << "writing to file was successful" << endl << endl;
+	
+	cout << "txt file" << endl << endl;
 	Person* field = read();
+	
+	cout << "bin file" << endl << endl;
 	Person* field2 = readBinary();
-	//delete[] field;
-//delete[] field2;
 
 
 	system("pause");
