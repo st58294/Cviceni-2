@@ -9,7 +9,7 @@ Address::Address()
 
 Address::Address(string _street, string _city, int _zipCode) {
     this->_city = _city;
-    this->_street = _city;
+    this->_street = _street;
     this->_zipCode = _zipCode;
 }
 
@@ -18,7 +18,7 @@ Address::~Address()
 }
 
 ostream& operator<<(ostream& output, const Address& data) {
-    output << data._city << " " << data._street << " " << data._zipCode << " ";
+    output << data._city << " " << data._street << " " << data._zipCode;
     return output;
 }
 
