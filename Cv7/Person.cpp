@@ -30,7 +30,3 @@ istream& operator>>(istream& input, Person& data){
 	return input;
 }
 
-void toString(Person& data) {
-	
-	
-}
