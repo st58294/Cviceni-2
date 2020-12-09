@@ -16,8 +16,8 @@ int main() {
     Matrix<double> mmtn_d = mmt_d.multiply(n_d);
     Matrix<int> r = mmtn_d.retype<int>();
     Matrix<int> t{ 3, 3 };
-    int tpole[] = { 85, 225, 236, 292, 819, 866, 499, 1413, 1496 };
-    t.setFrom(tpole);
+    int tfield[] = { 85, 225, 236, 292, 819, 866, 499, 1413, 1496 };
+    t.setFrom(tfield);
     std::cout << "r==t ? " << (r.isEqual(t) ? "true" : "false") << std::endl;
     return 0;
 }
