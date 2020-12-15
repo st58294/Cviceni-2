@@ -68,7 +68,7 @@ void Matrix<T>::set(int row, int col, T value) {
         matrix[row][col] = value;
     }
     else {
-        throw std::invalid_argument{ "index" };
+        throw std::invalid_argument{ "Index" };
     }
 }
 
@@ -76,13 +76,13 @@ template<typename T>
 void Matrix<T>::setFrom(T* array) {
     int arrSize = sizeof(array) / sizeof(array[0]);
     int ptr = 0;
-  
-        for (int i = 0; i < c_Row; ++i) {
-            for (int j = 0; j < c_Col; ++j) {
-                matrix[i][j] = array[ptr];
-                ptr++;
-            }
+
+    for (int i = 0; i < c_Row; ++i) {
+        for (int j = 0; j < c_Col; ++j) {
+            matrix[i][j] = array[ptr];
+            ptr++;
         }
+    }
 }
 
 template<typename T>
@@ -138,7 +138,7 @@ bool Matrix<T>::isEqual(const Matrix<T>& m) const {
 
 template<typename T>
 Matrix<T> Matrix<T>::transpose() const {
-    Matrix<T>*transposed = new Matrix<T>(c_Col, c_Row);
+    Matrix<T>* transposed = new Matrix<T>(c_Col, c_Row);
     for (int i = 0; i < c_Row; ++i) {
         for (int j = 0; j < c_Col; ++j) {
             transposed->set(j, i, matrix[i][j]);
@@ -148,12 +148,12 @@ Matrix<T> Matrix<T>::transpose() const {
 }
 
 template<typename T>
-Matrix<T> Matrix<T>::multiply(const Matrix<T> &m) const {
+Matrix<T> Matrix<T>::multiply(const Matrix<T>& m) const {
     if (c_Col != m.c_Row) {
-        throw std::invalid_argument("Invalid argument");
+        throw std::invalid_argument("Invalid");
     }
 
-    Matrix<T> new_matrix{ c_Row , c_Col  };
+    Matrix<T> new_matrix{ c_Row , c_Col };
 
     for (int i = 0; i < c_Row; i++) {
         for (int j = 0; j < m.c_Col; j++) {
