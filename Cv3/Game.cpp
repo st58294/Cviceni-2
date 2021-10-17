@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Game.h"
+#include <array>
 #include "StaticObject.h"
 
 typedef struct Bin {
@@ -8,7 +9,7 @@ typedef struct Bin {
 }Bin;
 
 Game::Game() {
-	objects = new Object*[];
+	objects = new Object*[maxObjCount];
 }
 
 Game::~Game() {
@@ -21,8 +22,8 @@ void Game::AddObeject(Object* object) {
 }
 
 int* Game::FindIDStaticObejct(double xMin, double xMax, double yMin, double yMax) {
-	int* Id_field = new int[counter];
-	int index = 0;
+	int* Id_field = new int[counter + 1];
+	int index = 1;
 	for (size_t i = 0; i < this->counter; i++) {
 		double x = objects[i]->GetX();
 		double y = objects[i]->GetY();
@@ -33,6 +34,7 @@ int* Game::FindIDStaticObejct(double xMin, double xMax, double yMin, double yMax
 			Id_field[index] = objects[i]->GetId();
 			index++;
 		}
+		Id_field[0] = index;
 	}
 	return Id_field;
 }
