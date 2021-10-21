@@ -7,7 +7,6 @@ private:
     int id;
     double x;
     double y;
-    
 public:
     Object(int id);
     virtual ~Object() {};      

@@ -4,12 +4,25 @@
 #include "Monster.h"
 #include "Object.h"
 #include "StaticObject.h"
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 
 using namespace std;
+void* operator new(size_t size)
+{
+	cout << "Allocating " << size << " bytes\n";
+	return malloc(size);
+}
 
+void operator delete(void* memory, size_t size)
+{
+	cout << "freeing " << size << " bytes\n";
+	return free(memory);
+}
 
 int main(int argc, char** argv) {
-	Game* game = new Game;
+	Game* game = new Game();
 	Object* obj = new StaticObjekt(5, ObsticleType::smallFlower);
 	Object* obj2 = new StaticObjekt(6, ObsticleType::smallFlower);
 	Object* obj3 = new DynamicObject(565, 2.0); 
@@ -38,26 +51,46 @@ int main(int argc, char** argv) {
 	game->AddObeject(obj5);
 	
 
-
 	int* fieldDynamicObejcts = game->FindIDStaticObejct(0, 2, 0, 2);
+	cout << "Static objects at 0, 2 , 0 , 2"<< endl;
 	for (int i = 1; i < fieldDynamicObejcts[0]; i++)
 	{
-			cout << fieldDynamicObejcts[i] << endl;	
+			cout << "Obj Id: " << fieldDynamicObejcts[i] << endl;
 	}
+	
+	delete[] fieldDynamicObejcts;
 
 	DynamicObject** dynamicObj = game->FindDynamicObejctsInArea(2, 2, 2);
-	for (size_t i = 0; i < sizeof(dynamicObj) / sizeof(int); i++)
-	{
-		cout << dynamicObj[i]->GetId() << endl;
+	cout << "Static Dynamic Obj at 2, 2 , 2" << endl;
+	int i = 0;
+	while (dynamicObj[i] != nullptr) {
+		cout << "Obj Id: " << dynamicObj[i]->GetId() << endl;
+		i++;
 	}
+	i = 0;
 
 	DynamicObject** dynamicObj2 = game->FindDynamicObejctsInArea(2, 2, 2, 0, 2);
-	for (size_t i = 0; i < sizeof(dynamicObj2) / sizeof(int); i++)
-	{
-		cout << dynamicObj2[i]->GetId() << endl;
+	cout << "Static Dynamic Obj in Area 2, 2, 2, 0, 2" << endl;
+	while (dynamicObj2[i] != nullptr) {
+		cout << "Obj Id: " << dynamicObj2[i]->GetId() << endl;
+		i++;
 	}
+	
+	i = 0;
+	while (dynamicObj[i] != nullptr) {
+		delete dynamicObj[i];
+		i++;
+	}
+	delete[] dynamicObj;
+	delete[] dynamicObj2;
 
+	delete obj;
+	delete obj2;
 	delete game;
+	
+
+	_CrtDumpMemoryLeaks();
+
 
 	return 0;
 }

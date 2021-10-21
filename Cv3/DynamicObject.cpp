@@ -1,7 +1,6 @@
 #include "DynamicObject.h"
 
 DynamicObject::DynamicObject(int id, double angle) :Object(id) {
-	Object* object = new Object(id);
 	this->angle = angle;
 }
 

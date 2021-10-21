@@ -13,7 +13,7 @@ Game::Game() {
 }
 
 Game::~Game() {
-	delete[] objects;
+	delete objects;
 }
 
 void Game::AddObeject(Object* object) {
@@ -42,8 +42,9 @@ int* Game::FindIDStaticObejct(double xMin, double xMax, double yMin, double yMax
 DynamicObject** Game::FindDynamicObejctsInArea(double x, double y, double r) {
 	Bin* sb_temp = new Bin;
 	Bin* sb_acc;
-	Bin* sb_head = NULL;
+	Bin* sb_head = nullptr;
 	int quantity = 0;
+	int lastPosition = 1;
 	for (size_t i = 0; i < counter; i++) {
 		int distance = sqrt(pow((objects[i]->GetX() - y), 2) + pow((objects[i]->GetX() - y), 2));
 		if (dynamic_cast<DynamicObject*>(objects[i]) != nullptr && distance <= r) {
@@ -57,19 +58,34 @@ DynamicObject** Game::FindDynamicObejctsInArea(double x, double y, double r) {
 				sb_acc->index = i;
 				sb_temp->next = sb_acc;
 				sb_temp = sb_temp->next;
-				sb_temp->next = NULL;
+				sb_temp->next = nullptr;
 				quantity++;
 			}
 		}
 	}
 
-	DynamicObject** results = new DynamicObject * [quantity];
-	for (size_t i = 0; i < quantity; i++) {
-		if (sb_head != NULL) {
-			results[i] = dynamic_cast<DynamicObject*> (objects[sb_head->index]);
-			sb_head = sb_head->next;
+	DynamicObject** results = new DynamicObject * [quantity + lastPosition];
+	sb_temp = sb_head;
+	for (size_t i = 0; i < quantity + lastPosition; i++) {
+		if (sb_temp == nullptr) {
+			results[i] = nullptr;
+		}
+		if (sb_temp != nullptr) {
+			results[i] = dynamic_cast<DynamicObject*> (objects[sb_temp->index]);
+			sb_temp = sb_temp->next;
 		}
 	}
+	
+	sb_temp = sb_head;
+
+	while (sb_temp != nullptr)
+	{
+		sb_acc = sb_temp;
+		sb_temp = sb_temp->next;
+		delete sb_acc;
+
+	}
+	delete sb_temp;
 	return results;
 }
 
@@ -79,6 +95,7 @@ DynamicObject** Game::FindDynamicObejctsInArea
 	Bin* sb_head = NULL;
 	Bin* sb_acc;
 	int quantity = 0;
+	int lastPosition = 1;
 	for (size_t i = 0; i < counter; i++) {
 		int distance = sqrt(pow((objects[i]->GetX() - y), 2) + pow((objects[i]->GetX() - y), 2));
 		DynamicObject* temp = dynamic_cast<DynamicObject*>(objects[i]);
@@ -99,13 +116,26 @@ DynamicObject** Game::FindDynamicObejctsInArea
 			}
 		}
 	}
-	DynamicObject** results = new DynamicObject * [quantity];
-	for (size_t i = 0; i < quantity; i++) {
-		if (sb_head != NULL) {
-			results[i] = dynamic_cast<DynamicObject*> (objects[sb_head->index]);
-			sb_head = sb_head->next;
+	DynamicObject** results = new DynamicObject * [quantity + lastPosition];
+	sb_temp = sb_head;
+	for (size_t i = 0; i < quantity + lastPosition; i++) {
+		if (sb_temp == NULL) {
+			results[i] = nullptr;
+		}
+		if (sb_temp != NULL) {
+			results[i] = dynamic_cast<DynamicObject*> (objects[sb_temp->index]);
+			sb_temp = sb_temp->next;
 		}
 	}
+	sb_temp = sb_head;
+	
+	while (sb_temp != NULL)
+	{
+		sb_acc = sb_temp;
+		sb_temp = sb_temp->next;
+		delete sb_acc;
 
+	}
+	delete sb_temp;
 	return results;
 }
